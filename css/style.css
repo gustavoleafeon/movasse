@@ -210,8 +210,8 @@ li {
 .card-conteudo figure {
     margin: 1%;
     position: relative;
-    box-sizing: border-box;
-    /* #grey 1px 1px 5px */
+    box-sizing: grey 1px 1px 5px;
+
 }
 
 .card-conteudo figcaption {
@@ -253,4 +253,46 @@ iframe {
     max-width: 80%;
     display: block;
     padding: 2% 0;
+}
+
+#form-contato {
+    margin: auto;
+    max-width: 700px;
+    width: 95%;
+}
+
+#form-contato input,
+#form-contato textarea {
+    border: 1px solid rgb(103, 103, 103);
+    width: 100%;
+    margin: 4px auto;
+    border-radius: 5px;
+}
+
+#form-contato input {
+    height: 40px;
+}
+
+#form-contato button {
+    border: none;
+    padding: 2%;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+
+}
+
+#form-contato button:hover,
+#form-contato button:focus {
+    background-color: #ed6d19;
+    cursor: pointer;
+}
+
+.conteudo-info p {
+    margin: 5%;
+
+}
+
+.localização p {
+    text-align: center;
 }
