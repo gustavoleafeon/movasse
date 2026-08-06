@@ -210,7 +210,7 @@ li {
 .card-conteudo figure {
     margin: 1%;
     position: relative;
-    box-sizing: grey 1px 1px 5px;
+    box-shadow: grey 1px 1px 5px;
 
 }
 
@@ -295,4 +295,93 @@ iframe {
 
 .localização p {
     text-align: center;
+}
+
+#card-pacote {
+    background-color: rgba(6, 99, 46, 0.5);
+    padding: 10px;
+    text-align: center;
+}
+
+.car-pacote-info {
+    background-color: white;
+    border-radius: 5px;
+    padding: 1%;
+    box-shadow: grey 1px 1px 5px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.pac-fotos,
+.pac-reservas {
+    background-color: #a98e12;
+    color: black;
+    width: 80px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 5px;
+    text-transform: uppercase;
+    border: none;
+}
+
+.pac-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.pac-fotos:hover,
+.pac-reservas:hover {
+    background-color: #ecda87;
+    color: #ed6d19;
+    transition: background-color 1s;
+    border-radius: 5%;
+}
+
+/* pagina acessórios */
+
+.acessorios {
+    margin: auto;
+    padding: 15px;
+}
+
+.produtos img {
+    max-width: 100px;
+    border: 3px solid #7f7f80;
+    border-radius: 100%;
+    box-shadow: gray 1px 1px 5px;
+}
+
+.produtos {
+    box-shadow: gray 1px 1px 5px;
+    text-align: center;
+    padding: 20px;
+    width: 80%;
+    height: 200px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.produtos h4 {
+    color: #ed6d19;
+    text-transform: uppercase;
+}
+
+.produtos p {
+    margin: 2% !important;
+}
+
+.comprar {
+    text-transform: uppercase;
+    background-color: #ed6d19;
+    width: 100%;
+    height: 20px;
+    padding: 3px;
+    margin: -5px auto;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+
 }
