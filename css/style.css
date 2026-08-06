@@ -1,6 +1,8 @@
-@charset "UTF-8";
+@charset "utf-8";
 
+/* Importação das fontes */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
 
 * {
     margin: 0;
@@ -8,7 +10,7 @@
 }
 
 body {
-    font-family: Ubuntu, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     background-image: url(../img/hypnotize.png);
     background-attachment: fixed;
     width: 100%;
@@ -18,8 +20,10 @@ img {
     width: 100%;
 }
 
+/* =============configurações de mobile frist============= */
+/* topo */
 #topo {
-    background-color: rgba(24, 56, 26, 0.9);
+    background-color: rgba(24, 56, 29, 0.9);
     border-bottom: solid 1px;
     text-align: center;
     margin-bottom: 15px;
@@ -54,10 +58,10 @@ nav a:visited,
 nav a:focus,
 nav a:hover,
 #iconMenu:focus,
-#iconsMenu:hover {
-    background-color: #a98e12;
-    color: black;
-    transition: background-color 1s, color 1s;
+#iconMenu:hover {
+    background-color: #A98E12;
+    color: #000;
+    transition: background-color 1s;
     border-radius: 5%;
 }
 
@@ -70,10 +74,11 @@ nav a:hover,
     font-size: 40px;
 }
 
+/* =====configurações do footer ========== */
 .rodape {
-    border-top: solid 5px #06632e;
-    background-color: black;
-    color: #7f7f80;
+    border-top: solid 5px #06632E;
+    background-color: #000;
+    color: #7F7F80;
     text-align: center;
     width: 100%;
 }
@@ -81,7 +86,6 @@ nav a:hover,
 .rodape p,
 li {
     font-size: 16px;
-
 }
 
 .rodape img {
@@ -90,7 +94,7 @@ li {
 
 .rodape-conteudo {
     padding: 15px;
-    color: white
+    color: white;
 }
 
 .rodape-conteudo li {
@@ -105,9 +109,9 @@ li {
     margin: 0 auto;
 }
 
-.menu-rodape {
+.menu-rodape a {
     text-decoration: none;
-    color: gray;
+    color: #7F7F80;
 }
 
 .menu-rodape a:hover {
@@ -121,7 +125,7 @@ li {
 
 .assinatura {
     color: white;
-    background-color: #7f7f80;
+    background-color: #7F7F80;
     text-align: center;
     height: auto;
     padding: 1%;
@@ -130,6 +134,8 @@ li {
 .assinatura p {
     margin-top: 3%;
 }
+
+/* conteúdo */
 
 .conteudo {
     max-width: 95%;
@@ -140,7 +146,7 @@ li {
     background-color: white;
     margin: 15px 0;
     padding: 1%;
-    box-shadow: gray 1px 1px 5px;
+    box-shadow: grey 1px 1px 5px;
 }
 
 .conteudo h2,
@@ -151,16 +157,15 @@ li {
 
 .titulo {
     font-size: 1.4em;
-    color: #ed6d19;
+    color: #ED6D19;
     text-align: center;
     text-transform: uppercase;
 }
 
-/* configurações da home */
+/* COnfigurações da Home */
 
 .destaque img {
-    border-bottom: dotted #ed6d19 5px;
-
+    border-bottom: dotted #ED6D19 5px;
 }
 
 .text-destaque {
@@ -187,7 +192,13 @@ li {
 #frase p {
     font-size: 1em;
     padding: 12px;
+}
 
+#frase {
+    color: white;
+    background-color: #ED6D19;
+    text-align: center;
+    height: 80px;
 }
 
 .card {
@@ -200,24 +211,16 @@ li {
     padding: 1% 0 2% 0;
 }
 
-#frase {
-    color: white;
-    background-color: #ed6d19;
-    text-align: center;
-    height: 80px;
-}
-
 .card-conteudo figure {
     margin: 1%;
     position: relative;
-    box-shadow: grey 1px 1px 5px;
-
+    box-sizing: grey 1px 1px 5px;
 }
 
 .card-conteudo figcaption {
     position: absolute;
-    bottom: 20px;
     left: 0;
+    bottom: 20px;
     width: 100%;
     background-color: rgba(127, 127, 128, 0.8);
     color: white;
@@ -232,8 +235,8 @@ li {
     filter: opacity(1);
 }
 
-.card-conteudo figure:hover img,
-.card-conteudo figure:focus img {
+.card-conteudo a:hover img,
+.card-conteudo a:focus img {
     filter: opacity(0.6);
 }
 
@@ -244,7 +247,7 @@ li {
 }
 
 #titulo-video {
-    color: white;
+    color: #fff;
     padding: 15px;
 }
 
@@ -255,6 +258,8 @@ iframe {
     padding: 2% 0;
 }
 
+/* ==== página contato ======= */
+
 #form-contato {
     margin: auto;
     max-width: 700px;
@@ -263,7 +268,7 @@ iframe {
 
 #form-contato input,
 #form-contato textarea {
-    border: 1px solid rgb(103, 103, 103);
+    border: solid 1px rgb(103, 103, 103);
     width: 100%;
     margin: 4px auto;
     border-radius: 5px;
@@ -277,26 +282,25 @@ iframe {
     border: none;
     padding: 2%;
     background-color: black;
-    color: white;
+    color: #fff;
     border-radius: 5px;
-
 }
 
 #form-contato button:hover,
 #form-contato button:focus {
-    background-color: #ed6d19;
+    background-color: #ED6D19;
     cursor: pointer;
 }
 
 .conteudo-info p {
     margin: 5%;
-
 }
 
-.localização p {
+.localizacao p {
     text-align: center;
 }
 
+/* ============ Página pacotes ============= */
 #card-pacote {
     background-color: rgba(6, 99, 46, 0.5);
     padding: 10px;
@@ -314,7 +318,7 @@ iframe {
 
 .pac-fotos,
 .pac-reservas {
-    background-color: #a98e12;
+    background-color: #A98E12;
     color: black;
     width: 80px;
     border-radius: 3px;
@@ -326,22 +330,20 @@ iframe {
 
 .pac-flex {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
     margin-top: 15px;
+    justify-content: center;
+    gap: 20px;
 }
 
 .pac-fotos:hover,
 .pac-reservas:hover {
     background-color: #ecda87;
-    color: #ed6d19;
+    color: #ED6D19;
     transition: background-color 1s;
     border-radius: 5%;
 }
 
-/* pagina acessórios */
-
+/* =====página acessórios ======= */
 .acessorios {
     margin: auto;
     padding: 15px;
@@ -349,13 +351,13 @@ iframe {
 
 .produtos img {
     max-width: 100px;
-    border: 3px solid #7f7f80;
+    border: #7F7F80 solid 3px;
     border-radius: 100%;
-    box-shadow: gray 1px 1px 5px;
+    box-shadow: grey 1px 1px 5px;
 }
 
 .produtos {
-    box-shadow: gray 1px 1px 5px;
+    box-shadow: grey 1px 1px 5px;
     text-align: center;
     padding: 20px;
     width: 80%;
@@ -365,7 +367,7 @@ iframe {
 }
 
 .produtos h4 {
-    color: #ed6d19;
+    color: #ED6D19;
     text-transform: uppercase;
 }
 
@@ -375,18 +377,17 @@ iframe {
 
 .comprar {
     text-transform: uppercase;
-    background-color: #ed6d19;
-    width: 100%;
+    background-color: #ED6D19;
+    width: 100px;
     height: 20px;
     padding: 3px;
     margin: -5px auto;
-    text-align: center;
     border-radius: 5px;
     color: white;
-
 }
 
-@media (min-width: 700px) {
+/* ==== Configuração do responsivo ===== */
+@media (min-width:700px) {
     #topo {
         position: fixed;
         width: 100%;
@@ -394,11 +395,10 @@ iframe {
         z-index: 1000;
     }
 
-    #top div {
+    #topo div {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px;
     }
 
     h1 {
@@ -446,11 +446,11 @@ iframe {
 
     .assinatura p {
         padding-top: 1%;
-        width: 100%;
+
     }
 
-    .assinatura p {
-        width: 100;
+    .assinatura {
+        width: 100%;
     }
 
     .card-conteudo,
@@ -492,7 +492,9 @@ iframe {
     .car-pacote-info img {
         height: 200px;
         object-fit: cover;
+        width: 100%;
     }
+
 }
 
 @media (min-width: 930px) {
@@ -508,7 +510,6 @@ iframe {
     #frase p {
         padding-top: 24px;
         font-size: 1.1em;
-
     }
 
     .comprar {
@@ -526,26 +527,20 @@ iframe {
         padding: 1%;
     }
 
-    .conteudo-info article {
-        height: 745px;
-    }
-
     #conteudo-contato article {
         height: 745px;
     }
 
-    .localização ifreme {
+    .localizacao iframe {
         height: 500px;
-        padding: 1%;
     }
 
-    #localização-end {
+    #localizacao-end {
         height: 745px;
     }
-
 }
 
-@media (min-width: 1500px) {
+@media (min-width:1500px) {
     nav {
         width: 1200px;
     }
@@ -553,4 +548,5 @@ iframe {
     .conteudo {
         width: 1200px;
     }
+
 }
