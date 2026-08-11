@@ -1,24 +1,3 @@
-// menu hamburguer //
-
-function clickMenu(){
-    let itens = document.getElementById('itens');
-    if (itens.style.display === 'block' || itens.style.display === '') {
-        itens.style.display = 'none';
-    } else {
-        itens.style.display = 'block';
-    }
-}
-
-$(document).ready(function(){
-    $('#destaque').slick({
-        dots: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows:false
-    });
-});
-
-
 // menu hamburguer
 function clickMenu() {
     let itens = document.getElementById('itens');
@@ -39,105 +18,117 @@ $(document).ready(function(){
     });
 });
 
-// ===== MODAL =====
-// Espera o documento carregar completamente
+// ===== MODAL - VERSÃO SIMPLES E FUNCIONAL =====
+// Aguarda o DOM carregar
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM carregado - Iniciando modal...');
     
-    // Pega os elementos do modal
+    // Pega o modal
     var modal = document.getElementById('Modal');
+    console.log('Modal encontrado?', modal);
+    
+    if (!modal) {
+        console.error('ERRO: Modal não encontrado no HTML!');
+        return;
+    }
+    
+    // Pega os botões de fechar
     var closeBtn = document.querySelector('.close-btn');
     var fecharBtn = document.getElementById('fechar-modal');
     
-    // Função para abrir o modal
+    // FUNÇÃO PARA ABRIR MODAL
     function abrirModal(titulo) {
-        if (modal) {
-            // Se tiver um título, atualiza
-            if (titulo) {
-                var tituloModal = modal.querySelector('h3');
-                if (tituloModal) {
-                    tituloModal.textContent = titulo;
-                }
+        console.log('Abrindo modal...', titulo);
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Atualiza o título se fornecido
+        if (titulo) {
+            var tituloEl = document.getElementById('modal-titulo');
+            if (tituloEl) {
+                tituloEl.textContent = titulo;
             }
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // trava o scroll
         }
     }
     
-    // Função para fechar o modal
+    // FUNÇÃO PARA FECHAR MODAL
     function fecharModal() {
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // libera o scroll
-        }
+        console.log('Fechando modal...');
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
     
-    // ===== BOTÕES DOS PACOTES =====
-    // Pega todos os botões "Fotos" e "Reservar"
-    var botoesFotos = document.querySelectorAll('.pac-fotos');
-    var botoesReservar = document.querySelectorAll('.pac-reservas');
+    // ==== BOTÕES DOS PACOTES ====
+    // Pega TODOS os botões com as classes
+    var botoes = document.querySelectorAll('.pac-fotos, .pac-reservas');
+    console.log('Botões encontrados:', botoes.length);
     
-    // Adiciona evento para cada botão "Fotos"
-    botoesFotos.forEach(function(botao) {
-        botao.addEventListener('click', function() {
+    if (botoes.length === 0) {
+        console.warn('Nenhum botão .pac-fotos ou .pac-reservas encontrado!');
+    }
+    
+    // Adiciona evento para CADA botão
+    botoes.forEach(function(botao, index) {
+        console.log('Configurando botão', index, botao);
+        
+        botao.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Botão clicado!', this);
+            
             // Encontra o card pai
             var card = this.closest('.car-pacote-info');
+            var titulo = 'Detalhes do Pacote';
+            
             if (card) {
-                var titulo = card.querySelector('h3');
-                if (titulo) {
-                    abrirModal('📸 Fotos - ' + titulo.textContent);
-                } else {
-                    abrirModal('📸 Fotos do Pacote');
+                var h3 = card.querySelector('h3');
+                if (h3) {
+                    titulo = h3.textContent.trim();
                 }
+            }
+            
+            // Define o título baseado no botão
+            if (this.classList.contains('pac-fotos')) {
+                abrirModal('📸 Fotos - ' + titulo);
+            } else if (this.classList.contains('pac-reservas')) {
+                abrirModal('📝 Reservar - ' + titulo);
             } else {
-                abrirModal('📸 Fotos do Pacote');
+                abrirModal(titulo);
             }
         });
     });
     
-    // Adiciona evento para cada botão "Reservar"
-    botoesReservar.forEach(function(botao) {
-        botao.addEventListener('click', function() {
-            var card = this.closest('.car-pacote-info');
-            if (card) {
-                var titulo = card.querySelector('h3');
-                if (titulo) {
-                    abrirModal('📝 Reservar - ' + titulo.textContent);
-                } else {
-                    abrirModal('📝 Reservar Pacote');
-                }
-            } else {
-                abrirModal('📝 Reservar Pacote');
-            }
-        });
-    });
-    
-    // ===== FECHAR MODAL =====
-    // Fechar com o X
+    // ==== FECHAR MODAL ====
+    // Botão X
     if (closeBtn) {
-        closeBtn.addEventListener('click', fecharModal);
-    }
-    
-    // Fechar com o botão "Fechar"
-    if (fecharBtn) {
-        fecharBtn.addEventListener('click', fecharModal);
-    }
-    
-    // Fechar clicando fora do modal (no overlay)
-    if (modal) {
-        modal.addEventListener('click', function(event) {
-            if (event.target === this) {
-                fecharModal();
-            }
+        closeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            fecharModal();
         });
     }
     
-    // Fechar com a tecla ESC
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal && modal.style.display === 'block') {
+    // Botão Fechar
+    if (fecharBtn) {
+        fecharBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            fecharModal();
+        });
+    }
+    
+    // Clicar fora do modal (no overlay)
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
             fecharModal();
         }
     });
     
-    // ===== TESTE: Adiciona um botão de teste =====
-    console.log('Modal carregado! Clique em "Fotos" ou "Reservar" nos pacotes.');
+    // Tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            fecharModal();
+        }
+    });
+    
+    console.log('Modal configurado com sucesso!');
 });

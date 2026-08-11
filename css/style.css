@@ -564,7 +564,7 @@ iframe {
 }
 
 .modal-container {
-    background-color: #fff;
+    background-color: #ffffff;
     margin: 10% auto;
     padding: 30px;
     width: 90%;
@@ -579,6 +579,7 @@ iframe {
     font-size: 24px;
     margin-bottom: 15px;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .modal-container p {
@@ -597,10 +598,12 @@ iframe {
     background: none;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .close-btn:hover {
     color: #ED6D19;
+    transform: scale(1.2);
 }
 
 .btn-fechar-modal {
@@ -608,12 +611,14 @@ iframe {
     margin: 20px auto 0;
     padding: 12px 40px;
     background-color: #ED6D19;
-    color: #fff;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .btn-fechar-modal:hover {
