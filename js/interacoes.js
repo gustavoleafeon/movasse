@@ -18,117 +18,97 @@ $(document).ready(function(){
     });
 });
 
-// ===== MODAL - VERSÃO SIMPLES E FUNCIONAL =====
-// Aguarda o DOM carregar
+// ===== MODAL =====
+// Espera o documento carregar completamente
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM carregado - Iniciando modal...');
     
-    // Pega o modal
+    // Pega os elementos do modal
     var modal = document.getElementById('Modal');
-    console.log('Modal encontrado?', modal);
-    
-    if (!modal) {
-        console.error('ERRO: Modal não encontrado no HTML!');
-        return;
-    }
-    
-    // Pega os botões de fechar
     var closeBtn = document.querySelector('.close-btn');
     var fecharBtn = document.getElementById('fechar-modal');
     
-    // FUNÇÃO PARA ABRIR MODAL
+    // Função para abrir o modal
     function abrirModal(titulo) {
-        console.log('Abrindo modal...', titulo);
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
-        // Atualiza o título se fornecido
-        if (titulo) {
-            var tituloEl = document.getElementById('modal-titulo');
-            if (tituloEl) {
-                tituloEl.textContent = titulo;
-            }
-        }
-    }
-    
-    // FUNÇÃO PARA FECHAR MODAL
-    function fecharModal() {
-        console.log('Fechando modal...');
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    
-    // ==== BOTÕES DOS PACOTES ====
-    // Pega TODOS os botões com as classes
-    var botoes = document.querySelectorAll('.pac-fotos, .pac-reservas');
-    console.log('Botões encontrados:', botoes.length);
-    
-    if (botoes.length === 0) {
-        console.warn('Nenhum botão .pac-fotos ou .pac-reservas encontrado!');
-    }
-    
-    // Adiciona evento para CADA botão
-    botoes.forEach(function(botao, index) {
-        console.log('Configurando botão', index, botao);
-        
-        botao.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Botão clicado!', this);
-            
-            // Encontra o card pai
-            var card = this.closest('.car-pacote-info');
-            var titulo = 'Detalhes do Pacote';
-            
-            if (card) {
-                var h3 = card.querySelector('h3');
-                if (h3) {
-                    titulo = h3.textContent.trim();
+        if (modal) {
+            // Se tiver um título, atualiza
+            if (titulo) {
+                var tituloModal = modal.querySelector('h3');
+                if (tituloModal) {
+                    tituloModal.textContent = titulo;
                 }
             }
-            
-            // Define o título baseado no botão
-            if (this.classList.contains('pac-fotos')) {
-                abrirModal('📸 Fotos - ' + titulo);
-            } else if (this.classList.contains('pac-reservas')) {
-                abrirModal('📝 Reservar - ' + titulo);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // trava o scroll
+        }
+    }
+    
+    // Função para fechar o modal
+    function fecharModal() {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // libera o scroll
+        }
+    }
+    
+    // ===== BOTÕES DOS PACOTES =====
+    // Pega todos os botões "Fotos" e "Reservar"
+    var botoesFotos = document.querySelectorAll('.pac-fotos');
+    var botoesReservar = document.querySelectorAll('.pac-reservas');
+    
+    // Adiciona evento para cada botão "Fotos"
+    botoesFotos.forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            // Encontra o card pai
+            var card = this.closest('.car-pacote-info');
+            if (card) {
+                var titulo = card.querySelector('h3');
+                if (titulo) {
+                    abrirModal('📸 Fotos - ' + titulo.textContent);
+                } else {
+                    abrirModal('📸 Fotos do Pacote');
+                }
             } else {
-                abrirModal(titulo);
+                abrirModal('📸 Fotos do Pacote');
             }
         });
     });
     
-    // ==== FECHAR MODAL ====
-    // Botão X
+    botoesReservar.forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            var card = this.closest('.car-pacote-info');
+            if (card) {
+                var titulo = card.querySelector('h3');
+                if (titulo) {
+                    abrirModal('📝 Reservar - ' + titulo.textContent);
+                } else {
+                    abrirModal('📝 Reservar Pacote');
+                }
+            } else {
+                abrirModal('📝 Reservar Pacote');
+            }
+        });
+    });
+    
     if (closeBtn) {
-        closeBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            fecharModal();
-        });
+        closeBtn.addEventListener('click', fecharModal);
     }
     
-    // Botão Fechar
     if (fecharBtn) {
-        fecharBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            fecharModal();
+        fecharBtn.addEventListener('click', fecharModal);
+    }
+    
+    if (modal) {
+        modal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                fecharModal();
+            }
         });
     }
     
-    // Clicar fora do modal (no overlay)
-    modal.addEventListener('click', function(e) {
-        if (e.target === this) {
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal && modal.style.display === 'block') {
             fecharModal();
         }
     });
     
-    // Tecla ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            fecharModal();
-        }
-    });
-    
-    console.log('Modal configurado com sucesso!');
 });
